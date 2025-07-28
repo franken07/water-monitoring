@@ -1,0 +1,198 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    padding-top: 50px; /* Add padding to the top */
+}
+
+h2 {
+    color: #333;
+    text-transform: uppercase;
+    margin-left: 15px;
+}
+
+.row {
+    display: auto;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Makes the card a flex container */
+    justify-content: space-between; /* Distributes space between items */
+    min-height: 200px; /* Adjust based on your needcs */
+
+}
+
+.card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+    width: auto; /* Do not stretch the image width */
+    height: auto; /* Do not stretch the image height */
+    max-width: 55%; /* Ensure the image is not wider than its container */
+    border-bottom: 1px solid #e0e0e0;
+    object-fit: contain; /* Ensure the entire image is visible, but might not cover the entire container */
+    margin: auto; /* Horizontally centers the image in its container */
+}
+
+.card-body {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures content is spaced out */
+    flex: 1; /* Allows card body to expand */
+      background-color: rgba(255, 255, 255, 0); /* Fully transparent background */
+}
+
+.card-title {
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold; /* Makes the text bolder */
+    font-size: 24px; /* Increases the font size; adjust as needed */
+    text-align: center;
+}
+
+.card-text {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #666;
+    font-weight: bold; /* Makes the text bold */
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #000000;
+    border-color: #000000;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.btn-primary:hover {
+    background-color: #000000;
+    border-color: #000000;
+}
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.5);
+}
+.button-container {
+    display: flex;
+    justify-content: center; /* This centers the button horizontally */
+}
+.category-heading {
+    display: block; /* Makes <strong> behave like a block-level element */
+    margin-top: 80px; /* Adjust the value as needed to push it down */
+    font-size: 70px; /* Optional: Adjust the font size if needed */
+    font-weight: bold; /* Strong is bold by default, but reiterating for clarity */
+    text-align: center;
+    color: white;
+}
+
+.small-image {
+    max-height: auto; /* Adjust based on your preference */
+    object-fit: auto; /* This makes sure the image covers the area nicely */
+}   
+html {  
+    scroll-behavior: smooth;
+}
+.form-control-sm {
+    width: 20%;      /* Makes the input smaller in width */
+    padding: .25rem; /* Adjusts the padding inside the input */
+    font-size: .875rem; /* Adjusts the font size inside the input */
+    text-align: center;
+    margin: 0 auto; /* Adds automatic margin to the left and right, centering the element */
+  }
+  .parent-container {
+    display: flex;
+    justify-content: center; /* Horizontally centers the child elements */
+    align-items: center; /* Vertically centers the child elements (if desired) */
+}
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-md-4 {
+        flex: 0 0 100%; 
+        max-width: 100%;
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Smaller font size on small devices */
+    }
+}
+.cid-u3GZCsHE3N .mbr-section-title {
+    color: #000000!important;
+}
+.cid-u3GZCsHE3N img, .cid-u3GZCsHE3N .item-img {
+    width: 100%;
+    height: 100%;
+    height: 300px;
+    object-fit: contain!important;
+  }
+  .cid-u3GZCsHE3N .item-content {
+    margin-top: 2rem;
+    padding: 0 2.25rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center; /* Centers vertically in a column direction */
+    align-items: center; /* Centers horizontally */
+}
+.session-alerts {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 20px; 
+    z-index: 1050; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; 
+}
+.custom-alert-success {
+    background-color: #fdca40 !important; /* A shade of yellow */
+    color: #000 !important; /* Text color - black for better contrast */
+}
+
+.session-alerts .alert {
+    pointer-events: auto; 
+    border-radius: 15px; 
+    padding: 10px 20px; 
+    margin: 0 10px; 
+    opacity: 0.95; 
+    transition: opacity 0.5s ease-in-out; 
+}
+
+/* Optional: Add media query for responsiveness */
+@media (max-width: 600px) {
+    .session-alerts {
+        flex-direction: column;
+        bottom: 10px;
+    }
+    .session-alerts .alert {
+        width: 90%;
+        margin-bottom: 10px;
+    }
+}

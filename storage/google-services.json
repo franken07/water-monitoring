@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "643124272739",
+    "firebase_url": "https://swqms-466f1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "swqms-466f1",
+    "storage_bucket": "swqms-466f1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643124272739:android:294bea096052df83c5a256",
+        "android_client_info": {
+          "package_name": "com.example.swqms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjzVI4kfvaoaQdp1zfBOchItQ9RWYrI5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
