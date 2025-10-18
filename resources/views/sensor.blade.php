@@ -720,127 +720,240 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 <script>
-function exportHistoryToCSV() {
-    let csvRows = [];
-
-    // Parse different timestamp shapes into milliseconds since epoch.
-    function parseTimestampToMillis(ts) {
-        if (ts == null) return NaN;
-
-        // Firebase-like object { seconds: ..., nanoseconds: ... }
-        if (typeof ts === 'object' && ts.seconds !== undefined) {
-            return (Number(ts.seconds) * 1000) + (Number(ts.nanoseconds || 0) / 1e6);
+async function exportHistoryToExcel() {
+    try {
+        // --- Helpers ---
+        function parseTimestampToMillis(ts) {
+            if (!ts) return NaN;
+            if (typeof ts === 'object' && ts.seconds !== undefined)
+                return (Number(ts.seconds) * 1000) + (Number(ts.nanoseconds || 0) / 1e6);
+            if (ts instanceof Date) return ts.getTime();
+            if (typeof ts === 'number') return ts < 1e12 ? ts * 1000 : ts;
+            const parsed = Date.parse(ts);
+            return isNaN(parsed) ? NaN : parsed;
         }
 
-        // If it's already a Date object
-        if (ts instanceof Date) return ts.getTime();
-
-        // If numeric
-        if (typeof ts === 'number') {
-            // If looks like seconds (10 digits) convert to ms
-            if (ts < 1e12) return ts * 1000;
-            // if already ms (13+ digits)
-            return ts;
+        function formatMillis(millis) {
+            if (isNaN(millis)) return '';
+            const d = new Date(millis);
+            return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ` +
+                   `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;
         }
 
-        // If string, try parsing ISO or other date string
-        const parsed = Date.parse(ts);
-        if (!isNaN(parsed)) return parsed;
-
-        // Fallback: NaN
-        return NaN;
-    }
-
-    // Format millis -> YYYY-MM-DD HH:mm:ss (24h)
-    function formatMillis(millis) {
-        if (isNaN(millis)) return ''; // unknown
-        const d = new Date(millis);
-        const Y = d.getFullYear();
-        const M = String(d.getMonth() + 1).padStart(2, '0');
-        const D = String(d.getDate()).padStart(2, '0');
-        const h = String(d.getHours()).padStart(2, '0');
-        const m = String(d.getMinutes()).padStart(2, '0');
-        const s = String(d.getSeconds()).padStart(2, '0');
-        return `${Y}-${M}-${D} ${h}:${m}:${s}`;
-    }
-
-    // Adds a sensor block; limits to 15 latest entries
-    function addHistoryBlock(sensorName, historyArray) {
-        csvRows.push([sensorName]);
-        csvRows.push(["Timestamp", "Value"]);
-
-        if (!Array.isArray(historyArray) || historyArray.length === 0) {
-            csvRows.push(['', '']);
-            csvRows.push([]);
-            return;
+        function prepareRows(arr) {
+            return (arr || []).slice(-15).map(e => [
+                formatMillis(parseTimestampToMillis(e.timestamp)),
+                e.value ?? ''
+            ]);
         }
 
-        // ✅ Limit to last 15 entries
-        const limitedHistory = historyArray.slice(-15);
-
-        // Convert all timestamps to millis
-        const millisArr = limitedHistory.map(e => parseTimestampToMillis(e.timestamp));
-
-        // Detect if all timestamps are the same
-        const uniqueSet = new Set(millisArr.map(x => (isNaN(x) ? `__NaN_${Math.random()}` : x)));
-        const allSame = uniqueSet.size === 1;
-
-        let baseMillis = millisArr.find(x => !isNaN(x));
-        if (allSame) {
-            if (isNaN(baseMillis)) baseMillis = Date.now();
-        }
-
-        const fallbackIncrementMs = 1000; // 1 second
-
-        limitedHistory.forEach((entry, idx) => {
-            let finalMillis;
-            if (!allSame) {
-                finalMillis = millisArr[idx];
-            } else {
-                finalMillis = baseMillis + (idx * fallbackIncrementMs);
+        // --- Interpretation ---
+        function getInterpretation(sensorName, latestValue) {
+            if (latestValue == null || latestValue === '') return "No data";
+            switch(sensorName) {
+                case "pH Level":
+                    if (latestValue < 7) return "Acidic";
+                    if (latestValue === 7) return "Neutral";
+                    return "Alkaline";
+                case "Temperature (°C)":
+                    if (latestValue < 20) return "Cold";
+                    if (latestValue <= 30) return "Normal";
+                    return "Hot";
+                case "Turbidity (NTU)":
+                    if (latestValue < 5) return "Clear";
+                    if (latestValue < 50) return "Slightly Turbid";
+                    return "Murky";
+                case "Salinity (ppt)":
+                    if (latestValue < 5) return "Low";
+                    if (latestValue <= 20) return "Medium";
+                    return "High";
+                default:
+                    return "";
             }
+        }
 
-            const timeStr = formatMillis(finalMillis);
-            const valueStr = (entry.value === undefined || entry.value === null) ? '' : String(entry.value);
-            csvRows.push([timeStr, valueStr]);
+        function getInterpretationColor(sensorName, latestValue) {
+            if (latestValue == null || latestValue === '') return 'FFB0B0B0';
+            switch(sensorName) {
+                case "pH Level":
+                    if (latestValue >= 6.5 && latestValue <= 8) return 'FF00FF00';
+                    if ((latestValue >= 5.5 && latestValue < 6.5) || (latestValue > 8 && latestValue <= 9)) return 'FFFFA500';
+                    return 'FFFF0000';
+                case "Temperature (°C)":
+                    if (latestValue >= 20 && latestValue <= 30) return 'FF00FF00';
+                    if ((latestValue >= 15 && latestValue < 20) || (latestValue > 30 && latestValue <= 35)) return 'FFFFA500';
+                    return 'FFFF0000';
+                case "Turbidity (NTU)":
+                    if (latestValue < 5) return 'FF00FF00';
+                    if (latestValue >= 5 && latestValue <= 50) return 'FFFFA500';
+                    return 'FFFF0000';
+                case "Salinity (ppt)":
+                    if (latestValue >= 5 && latestValue <= 20) return 'FF00FF00';
+                    if ((latestValue >= 3 && latestValue < 5) || (latestValue > 20 && latestValue <= 25)) return 'FFFFA500';
+                    return 'FFFF0000';
+                default:
+                    return 'FFB0B0B0';
+            }
+        }
+
+        function getInterpretationEmoji(sensorName, latestValue) {
+            if (latestValue == null || latestValue === '') return '❔';
+            switch(sensorName) {
+                case "pH Level":
+                    if (latestValue >= 6.5 && latestValue <= 8) return '✅';
+                    if ((latestValue >= 5.5 && latestValue < 6.5) || (latestValue > 8 && latestValue <= 9)) return '⚠️';
+                    return '❌';
+                case "Temperature (°C)":
+                    if (latestValue >= 20 && latestValue <= 30) return '✅';
+                    if ((latestValue >= 15 && latestValue < 20) || (latestValue > 30 && latestValue <= 35)) return '⚠️';
+                    return '❌';
+                case "Turbidity (NTU)":
+                    if (latestValue < 5) return '✅';
+                    if (latestValue >= 5 && latestValue <= 50) return '⚠️';
+                    return '❌';
+                case "Salinity (ppt)":
+                    if (latestValue >= 5 && latestValue <= 20) return '✅';
+                    if ((latestValue >= 3 && latestValue < 5) || (latestValue > 20 && latestValue <= 25)) return '⚠️';
+                    return '❌';
+                default:
+                    return '❔';
+            }
+        }
+
+        // --- Fetch live location ---
+        const res = await fetch('/sensor/live-data');
+        const data = await res.json();
+        const lat = parseFloat(data.latitude.value);
+        const lng = parseFloat(data.longitude.value);
+
+        // --- Reverse geocode ---
+        const locationRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+        const locData = await locationRes.json();
+        let readableAddress = "Unknown location";
+        if (locData && locData.address) {
+            const addr = locData.address;
+            const parts = [
+                addr.city || addr.town || addr.village || addr.hamlet || '',
+                addr.state || ''
+            ].filter(Boolean);
+            readableAddress = parts.join(', ');
+        }
+        if (readableAddress.length > 30) readableAddress = readableAddress.substring(0, 27) + '...';
+
+        // --- Sensors ---
+        const sensors = [
+            { name: "pH Level", rows: prepareRows(phHistory), color: "BBDEFB" },
+            { name: "Temperature (°C)", rows: prepareRows(temperatureHistory), color: "FFF9C4" },
+            { name: "Turbidity (NTU)", rows: prepareRows(turbidityHistory), color: "C8E6C9" },
+            { name: "Salinity (ppt)", rows: prepareRows(salinityHistory), color: "FFCDD2" },
+        ];
+        const maxRows = Math.max(...sensors.map(s => s.rows.length));
+
+        const wb = new ExcelJS.Workbook();
+        const ws = wb.addWorksheet('Sensor Data');
+
+        let startCol = 1;
+        const spacingBetweenCols = 2;
+
+        // --- Legend row ---
+        ws.getRow(1).height = 25;
+        let legendCol = 1;
+        sensors.forEach(sensor => {
+            ws.mergeCells(1, legendCol, 1, legendCol + 1);
+            const legendCell = ws.getCell(1, legendCol);
+            legendCell.value = ` ${sensor.name} `;
+            legendCell.font = { bold: true, color: { argb: 'FF000000' } };
+            legendCell.alignment = { horizontal: 'center', vertical: 'middle' };
+            legendCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sensor.color } };
+            legendCol += 2 + spacingBetweenCols;
         });
 
-        csvRows.push([]); // spacing row
+        // --- Sensor Tables ---
+        sensors.forEach(sensor => {
+            // Title row
+            ws.mergeCells(2, startCol, 2, startCol + 1);
+            const titleCell = ws.getCell(2, startCol);
+            titleCell.value = sensor.name;
+            titleCell.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+            titleCell.alignment = { horizontal: 'center' };
+            titleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sensor.color } };
+
+            // Header row
+            ws.getCell(3, startCol).value = 'Timestamp';
+            ws.getCell(3, startCol + 1).value = 'Value';
+            [ws.getCell(3, startCol), ws.getCell(3, startCol + 1)].forEach(cell => {
+                cell.font = { bold: true };
+                cell.alignment = { horizontal: 'center' };
+                cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sensor.color } };
+                cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+            });
+
+            // Data rows with alternating shading
+            sensor.rows.forEach((row, idx) => {
+                const r = 4 + idx;
+                ws.getCell(r, startCol).value = row[0];
+                ws.getCell(r, startCol + 1).value = row[1];
+                const fillColor = idx % 2 === 0 ? 'FFFFFFFF' : 'FFF0F0F0';
+                [ws.getCell(r, startCol), ws.getCell(r, startCol + 1)].forEach(cell => {
+                    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: fillColor } };
+                    cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+                });
+            });
+
+            // Location rows
+            const locationRow = 4 + maxRows;
+            ws.getCell(locationRow, startCol).value = 'Location';
+            ws.getCell(locationRow, startCol + 1).value = readableAddress;
+            ws.getCell(locationRow + 1, startCol).value = 'Latitude';
+            ws.getCell(locationRow + 1, startCol + 1).value = lat;
+            ws.getCell(locationRow + 2, startCol).value = 'Longitude';
+            ws.getCell(locationRow + 2, startCol + 1).value = lng;
+            for (let r = locationRow; r <= locationRow + 2; r++) {
+                [ws.getCell(r, startCol), ws.getCell(r, startCol + 1)].forEach(cell => {
+                    cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+                    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEFEFEF' } };
+                    cell.font = { bold: true };
+                });
+            }
+
+            // --- Interpretation Row with Emoji ---
+            const interpretationRow = locationRow + 3;
+            const latestValue = sensor.rows[sensor.rows.length - 1]?.[1];
+            ws.getCell(interpretationRow, startCol).value = 'Interpretation';
+            ws.getCell(interpretationRow, startCol + 1).value =
+                getInterpretationEmoji(sensor.name, latestValue) + ' ' + getInterpretation(sensor.name, latestValue);
+            [ws.getCell(interpretationRow, startCol), ws.getCell(interpretationRow, startCol + 1)].forEach(cell => {
+                cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+                cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: getInterpretationColor(sensor.name, latestValue) } };
+                cell.font = { bold: true };
+                cell.alignment = { horizontal: 'center' };
+            });
+
+            // Auto-width
+            ws.getColumn(startCol).width = Math.max(15, sensor.rows.reduce((max, r) => Math.max(max, r[0]?.length || 0), 0) + 2, readableAddress.length + 2);
+            ws.getColumn(startCol + 1).width = Math.max(10, sensor.rows.reduce((max, r) => Math.max(max, r[1]?.toString().length || 0), 0) + 2);
+
+            startCol += 2 + spacingBetweenCols;
+        });
+
+        // --- Save Excel ---
+        wb.xlsx.writeBuffer().then(buffer => {
+            const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+            saveAs(blob, "sensor_data_report.xlsx");
+        });
+
+    } catch (err) {
+        console.error(err);
+        alert("Failed to export Excel. Check console for details.");
     }
-
-    // ✅ Only export the latest 15 per sensor
-    addHistoryBlock("pH Level", phHistory);
-    addHistoryBlock("Temperature (°C)", temperatureHistory);
-    addHistoryBlock("Turbidity (NTU)", turbidityHistory);
-    addHistoryBlock("Salinity (ppt)", salinityHistory);
-
-    // Build CSV
-    function csvSafe(val) {
-        if (val == null) return '';
-        const s = String(val);
-        if (s.includes(',') || s.includes('"') || s.includes('\n')) {
-            return `"${s.replace(/"/g, '""')}"`;
-        }
-        return s;
-    }
-
-    let csvContent = "data:text/csv;charset=utf-8," 
-        + csvRows.map(row => row.map(csvSafe).join(",")).join("\n");
-
-    let encodedUri = encodeURI(csvContent);
-    let link = document.createElement("a");
-    link.href = encodedUri;
-    link.download = "sensor_history.csv";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
 }
 
-document.getElementById("exportHistoryBtn")
-    .addEventListener("click", exportHistoryToCSV);
+document.getElementById("exportHistoryBtn").addEventListener("click", exportHistoryToExcel);
 </script>
-
 
 
 
