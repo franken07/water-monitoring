@@ -12,6 +12,6 @@ class FirebaseAuth
         if (session()->has('uid')) {
             return $next($request);
         }
-        return redirect('/login');
+         return redirect()->route('index')->with('showLoginModal');
     }
 }

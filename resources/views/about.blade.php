@@ -29,225 +29,119 @@
   
   
 
-  <style>:root{ --background:rgb(0, 76, 255); --dominant-color: #3772FF; --primary-color:rgb(210, 179, 219); --secondary-color: #DF2935; --success-color: #31D98B; --danger-color: #DB2F40; --warning-color: #FFC20B; --info-color: #18CEF2; --background-text: #000000; --dominant-text: #FFFFFF; --primary-text: #000000; --secondary-text: #FFFFFF; --success-text: #000000; --danger-text: #FFFFFF; --warning-text: #000000; --info-text: #000000;}</style>
+  <style>:root{ --background:rgb(0, 76, 255); --dominant-color: #3772FF; --primary-color:rgb(210, 179, 219); --secondary-color: #DF2935; --success-color: #31D98B; --danger-color: #DB2F40; --warning-color: #FFC20B; --info-color: #18CEF2; --background-text: #ffffffff; --dominant-text: #FFFFFF; --primary-text: #ffffffff; --secondary-text: #FFFFFF; --success-text: #000000; --danger-text: #FFFFFF; --warning-text: #000000; --info-text: #000000;}</style>
 </head>
 <body>
 
  <!--navbar  -->
 @include('include.header')
 
-<!-- Enhanced Water Monitoring Section -->
-<section class="article9 cid-u3GZCsIX4p" id="about-us-9-u3GZCsIX4p">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-10">
-                <div class="card shadow-sm rounded-4 border-0">
-                    <div class="card-body p-5">
-                        <h3 class="card-title text-center mbr-fonts-style mbr-white mt-3 mb-4 display-2">
-                            <strong>Water Monitoring</strong>
-                        </h3>
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 col-md-12 mb-4">
-                                <p class="mbr-text mbr-fonts-style display-7 text-justify">
-                                    Welcome to the advanced water monitoring system for fishponds in Mangaladan, where innovation meets sustainability! Ensure the health and productivity of your fishponds with precise, real-time data monitoring.
-                                </p>
-                                <p class="mbr-text mbr-fonts-style display-7 text-justify">
-                                    Our system monitors pH levels, temperature, Salinity, and turbidity, ensuring an optimal environment for aquaculture success.
-                                </p>
-                                <p class="mbr-text mbr-fonts-style display-7 text-justify">
-                                    Discover how our cutting-edge technology transforms fishpond management, helping you achieve healthier fish, better yields, and sustainable aquaculture practices in Mangaldan.
-                                </p>
-                            </div>
-                            <div class="col-lg-6 col-md-12 d-flex justify-content-center">
-                                <img src="images/pond/pisspand.jpg" class="img-fluid rounded shadow-lg animate-fade" alt="Water Monitoring">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+<!-- frequently asked questions -->
+
+<section class="list1 cid-u3GZCsI9a7" id="faq-1-u3GZCsI9a7">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-12 col-lg-10 m-auto">
+				<div class="content">
+					<div class="mbr-section-head align-left mb-5">
+						<h3 class="mbr-section-title mb-2 mbr-fonts-style display-2">
+							<strong>Water Monitoring FAQs</strong>
+						</h3>
+					</div>
+					<div id="bootstrap-accordion_0" class="panel-group accordionStyles accordion" role="tablist" aria-multiselectable="true">
+						<div class="card mb-3">
+							<div class="card-header" role="tab" id="headingOne">
+								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse1_0" aria-expanded="false" aria-controls="collapse1">
+									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
+										How Does the Water Monitoring System Work?
+									</h6>
+									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
+								</a>
+							</div>
+							<div id="collapse1_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
+								<div class="panel-body">
+									<p class="mbr-fonts-style panel-text display-7">
+										The system uses sensors to measure water parameters like pH, temperature, dissolved oxygen, and turbidity. These readings are transmitted via Wi-Fi to our web platform for real-time monitoring and analysis.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card mb-3">
+							<div class="card-header" role="tab" id="headingTwo">
+								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse2_0" aria-expanded="false" aria-controls="collapse2">
+									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
+										What Parameters Can Be Monitored?
+									</h6>
+									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
+								</a>
+							</div>
+							<div id="collapse2_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
+								<div class="panel-body">
+									<p class="mbr-fonts-style panel-text display-7">
+										Our system monitors pH levels, temperature, dissolved oxygen, and turbidity. These are key indicators for water quality and help maintain optimal conditions for aquatic life.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card mb-3">
+							<div class="card-header" role="tab" id="headingThree">
+								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse3_0" aria-expanded="false" aria-controls="collapse3">
+									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
+										Is the System Easy to Install?
+									</h6>
+									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
+								</a>
+							</div>
+							<div id="collapse3_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
+								<div class="panel-body">
+									<p class="mbr-fonts-style panel-text display-7">
+										Yes! The system comes with detailed instructions and is designed for quick setup. Simply place the sensors in the water, connect to Wi-Fi, and start monitoring through our web platform.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card mb-3">
+							<div class="card-header" role="tab" id="headingFour">
+								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse4_0" aria-expanded="false" aria-controls="collapse4">
+									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
+										Can I Access Data Remotely?
+									</h6>
+									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
+								</a>
+							</div>
+							<div id="collapse4_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
+								<div class="panel-body">
+									<p class="mbr-fonts-style panel-text display-7">
+										Absolutely! The system transmits data to the cloud, allowing you to view water quality metrics remotely through any device with internet access.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card mb-3">
+							<div class="card-header" role="tab" id="headingFive">
+								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse5_0" aria-expanded="false" aria-controls="collapse5">
+									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
+										What Support Do You Offer?
+									</h6>
+									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
+								</a>
+							</div>
+							<div id="collapse5_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
+								<div class="panel-body">
+									<p class="mbr-fonts-style panel-text display-7">
+										We provide 24/7 customer support, including setup assistance, troubleshooting, and maintenance tips. Reach out to us via email or phone for help anytime.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
-
-<!-- TEAM SECTION -->
-<section class="team-section py-5" id="team">
-    <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-            <div class="col-lg-6">
-                <h2 class="section-title display-4"><strong>OUR TEAM</strong></h2>
-                <p class="text-muted">Meet the dedicated members behind our innovative project.</p>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            	    <!-- Team Member 1 -->
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="team-member text-center">
-                    <div class="member-img mb-3">
-                        <img src="images/pond/marbs.jpg" alt="Marvie Rumbaua">
-                    </div>
-                    <h5 class="mb-1"><strong>Marvie Rumbaua</strong></h5>
-                    <p class="text-muted">Project Manager & Developer</p>
-                </div>
-            </div>
-
-            <!-- Team Member 2 -->
-             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="team-member text-center">
-                    <div class="member-img mb-3">
-                        <img src="images/pond/irish2.jpg" alt="Irish Caberto">
-                    </div>
-                    <h5 class="mb-1"><strong>Irish Caberto</strong></h5>
-                    <p class="text-muted"> Researcher</p>
-                </div>
-            </div>           
-
-	    <!-- Team Member 3 -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="team-member text-center">
-                    <div class="member-img mb-3">
-                        <img src="images/pond/aiverr.jpg" alt="John Aiver">
-                    </div>
-                    <h5 class="mb-1"><strong>John Aiver</strong></h5>
-                    <p class="text-muted">Document Writer</p>
-                </div>
-            </div>
-            <!-- Team Member 4 -->
-               <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="team-member text-center">
-                    <div class="member-img mb-3">
-                        <img src="images/pond/sarah1.jpg" alt="Sarah Posadas">
-                    </div>
-                    <h5 class="mb-1"><strong>Sarah Posadas</strong></h5>
-                    <p class="text-muted">Document Writer</p>
-                </div>
-            </div>
-
-            <!-- Team Member 5 -->
-	             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="team-member text-center">
-                    <div class="member-img mb-3">
-                        <img src="images/pond/jester.jpg" alt="Carl Jhester">
-                    </div>
-                    <h5 class="mb-1"><strong>Carl Jhester</strong></h5>
-                    <p class="text-muted">Document Writer</p>
-                </div>
-            </div>
-         
-            <!-- Team Member 6 -->
-	        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="team-member text-center">
-                    <div class="member-img mb-3">
-                        <img src="images/pond/mark.jpg" alt="Mark Soriano">
-                    </div>
-                    <h5 class="mb-1"><strong>Mark Soriano</strong></h5>
-                    <p class="text-muted">Developer</p>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-
-<style>
-    
-     /* Enhanced Styling */
-     .article9 {
-        background: linear-gradient(135deg, #E0EAFC, #CFDEF3);
-        padding: 100px 0;
-    }
-
-    .card {
-        background-color: #ffffff;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-title {
-        font-family: 'Inter Tight', sans-serif;
-        font-weight: 700;
-        color: #3772FF;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-    }
-
-    .mbr-text {
-        color: #333;
-        line-height: 1.8;
-        font-size: 1.1rem;
-    }
-
-    .btn-primary {
-        background-color:rgb(0, 0, 0);
-        border: none;
-        box-shadow: 0 5px 15px rgba(55, 114, 255, 0.3);
-        transition: background 0.3s, box-shadow 0.3s;
-    }
-
-    .btn-primary:hover {
-        background-color: #2851b6;
-        box-shadow: 0 8px 20px rgba(55, 114, 255, 0.5);
-    }
-
-    .img-fluid {
-        max-width: 100%;
-        height: auto;
-        border-radius: 25px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s;
-    }
-
-    .img-fluid:hover {
-        transform: scale(1.05);
-    }
-
-    /* Animation */
-    .animate-fade {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    .team-section {
-        background-color: #f9f9f9;
-    }
-    .team-member {
-        transition: transform 0.3s;
-    }
-    .team-member:hover {
-        transform: translateY(-10px);
-    }
-    .member-img img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 50%;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        transition: box-shadow 0.3s;
-    }
-    .member-img img:hover {
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    }
-    .team-section h5 {
-        color: #333;
-    }
-    .team-section p {
-        color: #777;
-        font-size: 14px;
-    }.team-section h2.section-title {
-    font-size: 3.5rem; 
-    font-weight: 700;  
-    color: #333;       
-    text-transform: uppercase;
-}
-</style>
-
 
 <!--footer -->
    
@@ -255,7 +149,7 @@
     <div class="container">
         <div class="row">
           <p class="mbr-fonts-style copyright display-1">
-            WATER MONITORING
+             SECURE WATER QUALITY MONITORING SYSTEM
         </p>
             <div class="col-12 mt-4">
                 <div class="social-row">

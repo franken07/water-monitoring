@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- LogIn-->
+<!-- LogIn-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,70 +9,95 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
     body {
-    background-image: url('{{ asset('images/pond/PISPAND.jpg') }}');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    color: #fff;
-}
+        background-image: url('{{ asset('images/pond/PISPAND.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+        position: relative;
+    }
 
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-}
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+    }
 
-.login-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    padding: 40px;
-    max-width: 360px;
-    width: 100%;
-    text-align: center;
-    z-index: 1;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeIn 0.8s ease;
-}
+    .login-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        padding: 20px; /* smaller padding */
+        max-width: 360px;
+        width: 100%;
+        display: flex; /* flex layout */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        z-index: 1;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeIn 0.8s ease;
+    }
 
-.btn-primary {
-    background: linear-gradient(135deg, #6C63FF, #4E54C8);
-    border: none;
-    border-radius: 50px;
-    color: #fff;
-    font-weight: bold;
-    width: 100%;
-    padding: 12px;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 15px;
-}
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .login-logo {
+         width: 250px; /* custom width */
+         height: 100px; /* custom height */
+        
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #1B3C53, #456882);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-weight: bold;
+        width: 100%;
+        padding: 12px;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 15px;
+    }
     </style>
 </head>
 
 <!-- LogIn Page -->
 <body>
     <div class="login-card">
-        <h1 class="title">LOGIN</h1>
+        <div class="logo-container">
+            <img src="{{ asset('images/pond/swqms.png') }}" alt="Logo" class="login-logo">
+        </div>
         <form id="loginForm">
             <div class="mb-3">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required maxlength="30">
             </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required maxlength="20">
+            <div class="mb-3 position-relative">
+                <div style="display: flex; align-items: center; gap: 8px; position: relative;">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required maxlength="20" style="padding-right: 2.5rem;">
+                    <button type="button" id="togglePassword" aria-label="Show password" 
+                        style="position: absolute; right: 10px; background: transparent; border: none; cursor: pointer; color: #fff; font-size: 1.1rem;">
+                        👁️
+                    </button>
+                </div>
+            </div>
             <p id="attemptCounter" style="color: red;"></p>
             <p id="lockoutTimer" style="color: yellow;"></p>
             <div class="mb-3">
@@ -83,6 +108,7 @@ body::before {
             </div>
         </form>
     </div>
+
      <!-- LogIN logic -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js';
@@ -124,15 +150,31 @@ body::before {
             }
         }
 
+        function handleLoginFail(isCaptcha = false) {
+            attemptCounter++;
+            document.getElementById('attemptCounter').textContent = `Attempts left: ${3 - attemptCounter}`;
+            if (attemptCounter >= 3) {
+                attemptCounter = 0;
+                startLockout();
+                alert('Too many failed attempts. Please wait 15 seconds before trying again.');
+            } else {
+                alert(isCaptcha ? 'Incorrect CAPTCHA. Try again.' : 'Invalid email or password.');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.querySelector('form');
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.getElementById('togglePassword');
+
             loginForm.addEventListener('submit', function(event) {
                 event.preventDefault();
                 if (lockoutTime > Date.now()) {
                     alert('Too many failed attempts. Try again later.');
                     return;
                 }
-                
+
                 const captcha = generateCaptcha();
                 const captchaInput = prompt(captcha.question);
                 if (parseInt(captchaInput) !== captcha.answer) {
@@ -140,8 +182,8 @@ body::before {
                     return;
                 }
 
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+                const email = emailInput.value;
+                const password = passwordInput.value;
                 signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         userCredential.user.getIdToken().then((token) => {
@@ -164,53 +206,41 @@ body::before {
                     })
                     .catch(() => handleLoginFail());
             });
+
+            toggleBtn.addEventListener('click', function () {
+                const isHidden = passwordInput.type === 'password';
+                passwordInput.type = isHidden ? 'text' : 'password';
+                this.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+                this.textContent = isHidden ? '🙈' : '👁️';
+            });
+
+            function validateInput(input) {
+                const repeatedPattern = /(.)\1{4,}/;
+                if (repeatedPattern.test(input.value)) {
+                    alert('Too many repeated characters in input.');
+                    input.value = input.value.slice(0, -1);
+                }
+            }
+
+            emailInput.addEventListener('input', function () { validateInput(emailInput); });
+            passwordInput.addEventListener('input', function () { validateInput(passwordInput); });
         });
-
-        function handleLoginFail(isCaptcha = false) {
-            attemptCounter++;
-            document.getElementById('attemptCounter').textContent = `Attempts left: ${3 - attemptCounter}`;
-            if (attemptCounter >= 3) {
-                attemptCounter = 0;
-                startLockout();
-                alert('Too many failed attempts. Please wait 15 seconds before trying again.');
-            } else {
-                alert(isCaptcha ? 'Incorrect CAPTCHA. Try again.' : 'Invalid email or password.');
-            }
-        }
     </script>
+
     <script>
-    function checkApproval() {
-        fetch('/check-approval')
-        .then(response => response.json())
-        .then(data => {
-            if (data.approved) {
-                alert(data.message);
-                window.location.href = '/dashboard';
-            } else {
-                setTimeout(checkApproval, 3000);
-            }
-        }).catch(error => console.error('Error:', error));
-    }
-
-    checkApproval();
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-
-    function validateInput(input) {
-        const repeatedPattern = /(.)\1{4,}/; // Prevents repeating a character more than 4 times
-        if (repeatedPattern.test(input.value)) {
-            alert('Too many repeated characters in input.');
-            input.value = input.value.slice(0, -1); // Remove last character
+        function checkApproval() {
+            fetch('/check-approval')
+            .then(response => response.json())
+            .then(data => {
+                if (data.approved) {
+                    alert(data.message);
+                    window.location.href = '/dashboard';
+                } else {
+                    setTimeout(checkApproval, 3000);
+                }
+            }).catch(error => console.error('Error:', error));
         }
-    }
-
-    emailInput.addEventListener('input', function () { validateInput(emailInput); });
-    passwordInput.addEventListener('input', function () { validateInput(passwordInput); });
-});
-</script>
+        checkApproval();
+    </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="images/pond/icc.png" type="image/x-icon">
   <meta name="description" content=".">
  
-  <title>water</title>
+  <title>SWQMS</title>
   <link rel="stylesheet" href="{{ asset('assets/web/assets/mobirise-icons2/mobirise2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/parallax/jarallax.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
@@ -30,6 +30,8 @@
   
 
   <style>:root{ --background: #EBF1FF; --dominant-color: #3772FF; --primary-color: #d2b3db; --secondary-color: #DF2935; --success-color: #31D98B; --danger-color: #DB2F40; --warning-color: #FFC20B; --info-color: #18CEF2; --background-text: #000000; --dominant-text: #FFFFFF; --primary-text: #000000; --secondary-text: #FFFFFF; --success-text: #000000; --danger-text: #FFFFFF; --warning-text: #000000; --info-text: #000000;}</style>
+ 
+
 </head>
 <body>
 
@@ -52,7 +54,9 @@
         <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1">
           <strong>WATER MONITORING</strong>
         </h1>
-        <H5 class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">Transform Aquaculture with Precision and Care. Monitor Your Fish Pond's Health Effortlessly Today!</h5>
+            <h5 class="mbr-fonts-style mbr-text mb-4 display-7" style="color: #ffffff;">
+                 Keep Your Fish Pond Thriving with Real-Time Insights!
+            </h5>
       </div>
       <div class="navbar-buttons mbr-section-btn">
         <a class="btn btn-primary display-4" href="#product-list-8-u3GZCsHE3N" style="background-color: yellow; color: black;">
@@ -61,87 +65,62 @@
     </div>
     </div>
   </div>
+  <!-- Floating Bubbles -->
+    <div class="bubbles">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+    </div>
 </section>
+
+
+<!-- Water Monitoring - Premium Design -->
+<section class="water-monitoring-section">
+    <!-- Top Wave Divider -->
+    <div class="wave-divider-top"></div>
+
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <!-- Text Content -->
+            <div class="col-lg-6 mb-5">
+                <h2 class="section-title">💧 Water Monitoring</h2>
+                <p class="section-text">
+                    Welcome to the advanced water monitoring system for fishponds in Mangaldan, where 
+                    <span class="highlight-text">innovation meets sustainability</span>! Ensure the health and productivity of your fishponds 
+                    with precise, real-time data monitoring.
+                </p>
+                <p class="section-text">
+                    Our system tracks <span class="highlight-text">pH levels</span>, 
+                    <span class="highlight-text">temperature</span>, 
+                    <span class="highlight-text">salinity</span>, and 
+                    <span class="highlight-text">turbidity</span>, ensuring the optimal environment 
+                    for aquaculture success.
+                </p>
+                <ul class="feature-list">
+                    <li>🌊 Real-time, accurate readings</li>
+                    <li>🐟 Healthier fish, better yields</li>
+                    <li>🌱 Eco-friendly aquaculture</li>
+                </ul>
+            </div>
+
+            <!-- Image Content -->
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="image-box">
+                    <img src="images/pond/pisspand.jpg" alt="Water Monitoring" class="img-fluid">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Wave Divider -->
+    <div class="wave-divider-bottom"></div>
+
+    <!-- Floating Bubbles -->
+    <div class="bubbles">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+    </div>
 </section>
-
-
- <!-- Sensor's used -->
- <section class="pricing02 cid-u3GZCsHE3N" id="product-list-8-u3GZCsHE3N">
-     <div class="container-fluid">
-         <div class="row justify-content-center">
-             <div class="col-12 content-head">
-                 <div class="mbr-section-head mb-5">
-                     <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                         <strong>SENSORS</strong>
-                     </h4>
-                 </div>
-             </div>
-         </div>
-         <div class="row">
-             <div class="item features-image col-12 col-md-6 col-lg-3">
-                 <div class="item-wrapper">
-                     <div class="item-img">
-                         <img src="images/pond/turbo.png" >
-                     </div>
-                     <div class="item-content">
-                         <h5 class="item-title mbr-fonts-style display-5">
-                             <strong>Turbidity Sensor</strong>
-                         </h5>
-                         <p class="mbr-text mbr-fonts-style display-7">
-                         The turbidity sensor measures the cloudiness or haziness of water, helping to determine the quality and clarity of the water in your fishpond.
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <div class="item features-image col-12 col-md-6 col-lg-3">
-                 <div class="item-wrapper">
-                     <div class="item-img">
-                         <img src="images/pond/ph.png">
-                     </div>
-                     <div class="item-content">
-                         <h5 class="item-title mbr-fonts-style display-5">
-                             <strong>PH Sensor</strong>
-                         </h5>
-                         <p class="mbr-text mbr-fonts-style display-7">
-                         The pH sensor monitors the acidity or alkalinity of the water, ensuring optimal conditions for the health of your fish and aquatic plants.
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <div class="item features-image col-12 col-md-6 col-lg-3">
-                 <div class="item-wrapper">
-                     <div class="item-img">
-                         <img src="images/pond/prof.png" alt="">
-                     </div>
-                     <div class="item-content">
-                         <h5 class="item-title mbr-fonts-style display-5">
-                             <strong>Water Sensor</strong>
-                         </h5>
-                         <p class="mbr-text mbr-fonts-style display-7">
-                         The water sensor detects the water level in the fishpond, helping to maintain the required levels for a healthy aquatic environment.
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <div class="item features-image col-12 col-md-6 col-lg-3">
-                 <div class="item-wrapper">
-                     <div class="item-img">
-                         <img src="images/pond/sal.png">
-                     </div>
-                     <div class="item-content">
-                         <h5 class="item-title mbr-fonts-style display-5">
-                             <strong>Salinity Sensor</strong>
-                         </h5>
-                         <p class="mbr-text mbr-fonts-style display-7">
-                         The salinity sensor measures the salt concentration in the water, helping to monitor the overall water quality in your fishpond.
-                         </p>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
- </section>
-
 
 <!-- Partnerships  -->
 <section class="features03 cid-u3GZCsI6YY" id="partners-1-u3GZCsI6YY">
@@ -195,8 +174,229 @@
     </div>
 </section>
 
+<!-- Sensor's used -->
+ <section class="pricing02 cid-u3GZCsHE3N" id="product-list-8-u3GZCsHE3N">
+     <div class="container-fluid">
+         <div class="row justify-content-center">
+             <div class="col-12 content-head">
+                 <div class="mbr-section-head mb-5">
+                     <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                         <strong>SENSORS</strong>
+                     </h4>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="item features-image col-12 col-md-6 col-lg-3">
+                 <div class="item-wrapper">
+                     <div class="item-img">
+                         <img src="images/pond/turbo.png" >
+                     </div>
+                     <div class="item-content">
+                         <h5 class="item-title mbr-fonts-style display-5">
+                             <h1 style="font-weight: 800; font-size: 40px;">Turbidity Sensor</h1>
+                         </h5>
+                         <p class="mbr-text mbr-fonts-style display-7">
+                         The turbidity sensor measures the cloudiness or haziness of water, helping to determine the quality and clarity of the water in your fishpond.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+             <div class="item features-image col-12 col-md-6 col-lg-3">
+                 <div class="item-wrapper">
+                     <div class="item-img">
+                         <img src="images/pond/ph.png">
+                     </div>
+                     <div class="item-content">
+                         <h5 class="item-title mbr-fonts-style display-5">
+                             <h1 style="font-weight: 800; font-size: 40px;">PH Sensor</h1>
+                         </h5>
+                         <p class="mbr-text mbr-fonts-style display-7">
+                         The pH sensor monitors the acidity or alkalinity of the water, ensuring optimal conditions for the health of your fish and aquatic plants.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+             <div class="item features-image col-12 col-md-6 col-lg-3">
+                 <div class="item-wrapper">
+                     <div class="item-img">
+                         <img src="images/pond/prof.png" alt="">
+                     </div>
+                     <div class="item-content">
+                         <h5 class="item-title mbr-fonts-style display-5">
+                           <h1 style="font-weight: 800; font-size: 40px;">Water Sensor</h1>
+                         </h5>
+                         <p class="mbr-text mbr-fonts-style display-7">
+                         The water sensor detects the water level in the fishpond, helping to maintain the required levels for a healthy aquatic environment.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+             <div class="item features-image col-12 col-md-6 col-lg-3">
+                 <div class="item-wrapper">
+                     <div class="item-img">
+                         <img src="images/pond/sal.png">
+                     </div>
+                     <div class="item-content">
+                         <h5 class="item-title mbr-fonts-style display-5">
+                             <h1 style="font-weight: 800; font-size: 40px;">Salinity Sensor</h1>
+                         </h5>
+                         <p class="mbr-text mbr-fonts-style display-7">
+                         The salinity sensor measures the salt concentration in the water, helping to monitor the overall water quality in your fishpond.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </section>
+
+
+<!-- TEAM SECTION -->
+<section class="team-section py-5" id="team">
+  <div class="container">
+    <!-- Title -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-6">
+        <h2 class="section-title display-4 fw-bold text-gradient">OUR TEAM</h2>
+        <p class="text-muted">Meet the passionate people behind our innovative project.</p>
+      </div>
+    </div>
+
+    <!-- Team Cards -->
+    <div class="row justify-content-center g-4 text-center">
+
+      <!-- Member 1 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="https://www.linkedin.com/in/555marbs" target="_blank" class="team-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front -->
+              <div class="flip-card-front glass-card">
+                <img src="images/pond/marbs.jpg" alt="Marvie Rumbaua" class="team-img">
+                <h4 class="mt-3">Marvie Rumbaua</h4>
+                <p>Project Manager & Developer</p>
+              </div>
+              <!-- Back -->
+              <div class="flip-card-back glass-card">
+                <h5>About Marvie</h5>
+                <p>Leads the team with dedication and technical expertise.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="https://www.linkedin.com/in/irish-nicole-naranja-caberto-650269256" target="_blank" class="team-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front -->
+              <div class="flip-card-front glass-card">
+                <img src="images/pond/irish2.jpg" alt="Irish Caberto" class="team-img">
+                <h4 class="mt-3">Irish Caberto</h4>
+                <p>Researcher</p>
+              </div>
+              <!-- Back -->
+              <div class="flip-card-back glass-card">
+                <h5>About Irish</h5>
+                <p>Conducts thorough research for innovative solutions.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="https://www.linkedin.com/in/john-aiver-dela-cruz-460631350?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="team-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front -->
+              <div class="flip-card-front glass-card">
+                <img src="images/pond/aiverr.jpg" alt="John Aiver" class="team-img">
+                <h4 class="mt-3">John Aiver</h4>
+                <p>Document Writer</p>
+              </div>
+              <!-- Back -->
+              <div class="flip-card-back glass-card">
+                <h5>About John</h5>
+                <p>Crafts clear and professional documentation for the project.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Member 4 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="https://www.linkedin.com/in/sarahjoyceqposadas" target="_blank" class="team-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front -->
+              <div class="flip-card-front glass-card">
+                <img src="images/pond/sarah1.jpg" alt="Sarah Posadas" class="team-img">
+                <h4 class="mt-3">Sarah Posadas</h4>
+                <p>Document Writer</p>
+              </div>
+              <!-- Back -->
+              <div class="flip-card-back glass-card">
+                <h5>About Sarah</h5>
+                <p>Ensures quality and accuracy in project documents.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Member 5 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="www.linkedin.com/in/carl-jhester-quilang-royupa" target="_blank" class="team-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front -->
+              <div class="flip-card-front glass-card">
+                <img src="images/pond/jester.jpg" alt="Carl Jhester" class="team-img">
+                <h4 class="mt-3">Carl Jhester</h4>
+                <p>Document Writer</p>
+              </div>
+              <!-- Back -->
+              <div class="flip-card-back glass-card">
+                <h5>About Carl</h5>
+                <p>Focuses on detailed and structured technical writing.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Member 6 -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="https://www.linkedin.com/in/kimbertsoriano/" target="_blank" class="team-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front -->
+              <div class="flip-card-front glass-card">
+                <img src="images/pond/mark.jpg" alt="Mark Soriano" class="team-img">
+                <h4 class="mt-3">Mark Soriano</h4>
+                <p>Developer</p>
+              </div>
+              <!-- Back -->
+              <div class="flip-card-back glass-card">
+                <h5>About Mark</h5>
+                <p>Builds and optimizes the technical side of the project.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
    
-    <!-- Water Monitoring -->
+<!-- Water Monitoring -->
 <section class="article021 cid-u3GZCsIYBg" id="features-51-u3GZCsIYBg">
     <div class="container">
         <div class="row justify-content-center">
@@ -227,110 +427,13 @@
     </div>
 </section>
 
-<!-- frequently asked questions -->
 
-<section class="list1 cid-u3GZCsI9a7" id="faq-1-u3GZCsI9a7">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-12 col-lg-10 m-auto">
-				<div class="content">
-					<div class="mbr-section-head align-left mb-5">
-						<h3 class="mbr-section-title mb-2 mbr-fonts-style display-2">
-							<strong>Water Monitoring FAQs</strong>
-						</h3>
-					</div>
-					<div id="bootstrap-accordion_0" class="panel-group accordionStyles accordion" role="tablist" aria-multiselectable="true">
-						<div class="card mb-3">
-							<div class="card-header" role="tab" id="headingOne">
-								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse1_0" aria-expanded="false" aria-controls="collapse1">
-									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
-										How Does the Water Monitoring System Work?
-									</h6>
-									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
-								</a>
-							</div>
-							<div id="collapse1_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
-								<div class="panel-body">
-									<p class="mbr-fonts-style panel-text display-7">
-										The system uses sensors to measure water parameters like pH, temperature, dissolved oxygen, and turbidity. These readings are transmitted via Wi-Fi to our web platform for real-time monitoring and analysis.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card mb-3">
-							<div class="card-header" role="tab" id="headingTwo">
-								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse2_0" aria-expanded="false" aria-controls="collapse2">
-									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
-										What Parameters Can Be Monitored?
-									</h6>
-									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
-								</a>
-							</div>
-							<div id="collapse2_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
-								<div class="panel-body">
-									<p class="mbr-fonts-style panel-text display-7">
-										Our system monitors pH levels, temperature, dissolved oxygen, and turbidity. These are key indicators for water quality and help maintain optimal conditions for aquatic life.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card mb-3">
-							<div class="card-header" role="tab" id="headingThree">
-								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse3_0" aria-expanded="false" aria-controls="collapse3">
-									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
-										Is the System Easy to Install?
-									</h6>
-									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
-								</a>
-							</div>
-							<div id="collapse3_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
-								<div class="panel-body">
-									<p class="mbr-fonts-style panel-text display-7">
-										Yes! The system comes with detailed instructions and is designed for quick setup. Simply place the sensors in the water, connect to Wi-Fi, and start monitoring through our web platform.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card mb-3">
-							<div class="card-header" role="tab" id="headingFour">
-								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse4_0" aria-expanded="false" aria-controls="collapse4">
-									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
-										Can I Access Data Remotely?
-									</h6>
-									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
-								</a>
-							</div>
-							<div id="collapse4_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
-								<div class="panel-body">
-									<p class="mbr-fonts-style panel-text display-7">
-										Absolutely! The system transmits data to the cloud, allowing you to view water quality metrics remotely through any device with internet access.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card mb-3">
-							<div class="card-header" role="tab" id="headingFive">
-								<a role="button" class="panel-title collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse5_0" aria-expanded="false" aria-controls="collapse5">
-									<h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
-										What Support Do You Offer?
-									</h6>
-									<span class="sign mbr-iconfont mobi-mbri-arrow-down"></span>
-								</a>
-							</div>
-							<div id="collapse5_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
-								<div class="panel-body">
-									<p class="mbr-fonts-style panel-text display-7">
-										We provide 24/7 customer support, including setup assistance, troubleshooting, and maintenance tips. Reach out to us via email or phone for help anytime.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+
+
+
+
+
+
 
 <!--footer -->
    
@@ -338,7 +441,7 @@
     <div class="container">
         <div class="row">
           <p class="mbr-fonts-style copyright display-1">
-            WATER MONITORING
+             SECURE WATER QUALITY MONITORING SYSTEM
         </p>
             <div class="col-12 mt-4">
                 <div class="social-row">

@@ -20,7 +20,7 @@ class AuthController extends Controller
             $verifiedIdToken = $firebase->verifyIdToken($token);
             $uid = $verifiedIdToken->claims()->get('sub');
     
-            if ($uid === 'oi5MnBgTgcM4jZRFMtNYV0lKYLb2') {
+            if ($uid === 'TfMGlRD9eth7JzdSdluS388aSsv1'|| $uid === '4hzmpXk449cPCs7rJHyfXQNNmuz2') {
                 // Admin account login logic
                 session([
                     'uid' => $uid,
@@ -47,6 +47,6 @@ class AuthController extends Controller
     {
         $request->session()->forget('firebase_logged_in');
         $request->session()->forget('uid');
-        return redirect('/login');
+        return redirect('/');
     }
 }

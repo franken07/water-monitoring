@@ -10,7 +10,7 @@ class FirebaseAuthMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!session('firebase_logged_in')) {
-            return redirect()->route('login')->with('error', 'You must be logged in to access this page.');
+            return redirect()->route('index')->with('showLoginModal');
         }
 
         return $next($request);

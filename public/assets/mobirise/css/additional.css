@@ -168,7 +168,7 @@ body {
   background-color: var(--primary-color, #9fe870) !important;
 }
 .btn-secondary {
-  background-color: var(--secondary-color, #ffd7ef) !important;
+  background-color: var(--secondary-color, #456882) !important;
 }
 .bg-success {
   background-color: var(--success-color, #3a341c) !important;
@@ -184,9 +184,9 @@ body {
 }
 .btn-primary,
 .btn-primary:active {
-  background-color: var(--primary-color, #d2b3db) !important;
-  border-color: var(--primary-color, #d2b3db) !important;
-  color: var(--primary-text, black) !important;
+  background-color:  #456882 !important;
+  border-color:  #1B3C53 !important;
+  color: #ffffffed !important;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 .button:hover {
@@ -197,20 +197,20 @@ body {
 .btn-primary:focus,
 .btn-primary.focus,
 .btn-primary.active {
-  border-color: color-mix(in srgb,var(--primary-color, #800000),#800000 ) !important;
+  border-color: color-mix(in srgb,var(--primary-color, #D2C1B6),#D2C1B6 ) !important;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: var(--primary-text, #264d0c) !important;
-  background-color: color-mix(in srgb,var(--primary-color, #800000),#800000) !important;
-  border-color: color-mix(in srgb,var(--primary-color, #800000),#800000) !important;
+  background-color: color-mix(in srgb,var(--primary-color, #D2C1B6),#D2C1B6) !important;
+  border-color: color-mix(in srgb,var(--primary-color, #D2C1B6),#D2C1B6) !important;
 }
 .btn-secondary,
 .btn-secondary:active {
   background-color: var(--secondary-color, #ffd7ef) !important;
   border-color: var(--secondary-color, #ffd7ef) !important;
-  color: var(--secondary-text, #800000) !important;
+  color: var(--secondary-text, #D2C1B6) !important;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 .btn-secondary:hover,
@@ -224,14 +224,14 @@ body {
 }
 .btn-secondary.disabled,
 .btn-secondary:disabled {
-  color: var(--secondary-text, #d70081) !important;
+  color: var(--secondary-text, #D2C1B6) !important;
   background-color: color-mix(in srgb,var(--secondary-color, #ffd7ef),#000 40%) !important;
   border-color: color-mix(in srgb,var(--secondary-color, #ffd7ef),#000 40%) !important;
 }
 .btn-info,
 .btn-info:active {
-  background-color: var(--info-color, #320707) !important;
-  border-color: var(--info-color, #320707) !important;
+  background-color: var(--info-color, #D2C1B6) !important;
+  border-color: var(--info-color, #D2C1B6) !important;
   color: var(--info-text, #ffffff) !important;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
@@ -240,8 +240,8 @@ body {
 .btn-info.focus,
 .btn-info.active {
   color: inherit;
-  background-color: color-mix(in srgb,var(--info-color, #320707),#000 20%) !important;
-  border-color: color-mix(in srgb,var(--info-color, #320707),#000 20%) !important;
+  background-color: color-mix(in srgb,var(--info-color, #D2C1B6),#000 20%) !important;
+  border-color: color-mix(in srgb,var(--info-color, #D2C1B6),#000 20%) !important;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
 }
 .btn-info.disabled,
@@ -384,23 +384,23 @@ body {
 .btn-secondary-outline,
 .btn-secondary-outline:active {
   background-color: transparent !important;
-  border-color: var(--secondary-color, #ffd7ef);
-  color: var(--secondary-color, #ffd7ef);
+  border-color: var(--secondary-color, #456882);
+  color: var(--secondary-color, #456882);
 }
 .btn-secondary-outline:hover,
 .btn-secondary-outline:focus,
 .btn-secondary-outline.focus,
 .btn-secondary-outline.active {
-  color: color-mix(in srgb,var(--secondary-color, #ffd7ef),#000 20%) !important;
+  color: color-mix(in srgb,var(--secondary-color, #456882),#000 20%) !important;
   background-color: transparent!important;
-  border-color: color-mix(in srgb,var(--secondary-color, #ffd7ef),#000 20%) !important;
+  border-color: color-mix(in srgb,var(--secondary-color, #456882),#000 20%) !important;
   box-shadow: none!important;
 }
 .btn-secondary-outline.disabled,
 .btn-secondary-outline:disabled {
-  color: var(--secondary-text, #d70081) !important;
-  background-color: color-mix(in srgb,var(--secondary-color, #ffd7ef),#000 40%) !important;
-  border-color: color-mix(in srgb,var(--secondary-color, #ffd7ef),#000 40%) !important;
+  color: var(--secondary-text, #D2C1B6) !important;
+  background-color: color-mix(in srgb,var(--secondary-color, #456882),#000 40%) !important;
+  border-color: color-mix(in srgb,var(--secondary-color, #456882),#000 40%) !important;
 }
 .btn-info-outline,
 .btn-info-outline:active {
@@ -532,7 +532,7 @@ body {
   color: var(--primary-text, #264d0c) !important;
 }
 .text-secondary {
-  color: var(--secondary-text, #d70081) !important;
+  color: var(--secondary-text, #D2C1B6) !important;
 }
 .text-success {
   color: var(--success-text, #ffffff) !important;
@@ -733,7 +733,7 @@ blockquote {
 .xdsoft_datetimepicker .xdsoft_calendar td:hover,
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div:hover {
   color: #000000 !important;
-  background: var(--secondary-color, #ffd7ef) !important;
+  background: var(--secondary-color, #456882) !important;
   box-shadow: none !important;
 }
 .lazy-bg {
