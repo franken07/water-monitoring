@@ -286,7 +286,7 @@
               <!-- Front -->
               <div class="flip-card-front glass-card">
                 <img src="images/pond/marbs.jpg" alt="Marvie Rumbaua" class="team-img">
-                <h4 class="mt-3">Marvie Rumbaua</h4>
+                <h4 class="mt-3">Jan Marvie</h4>
                 <p>Project Manager & Developer</p>
               </div>
               <!-- Back -->
