@@ -307,7 +307,7 @@
               <!-- Front -->
               <div class="flip-card-front glass-card">
                 <img src="images/pond/irish2.jpg" alt="Irish Caberto" class="team-img">
-                <h4 class="mt-3">Irish Caberto</h4>
+                <h4 class="mt-3">Irish Nicole</h4>
                 <p>Researcher</p>
               </div>
               <!-- Back -->
@@ -349,7 +349,7 @@
               <!-- Front -->
               <div class="flip-card-front glass-card">
                 <img src="images/pond/sarah1.jpg" alt="Sarah Posadas" class="team-img">
-                <h4 class="mt-3">Sarah Posadas</h4>
+                <h4 class="mt-3">Sarah Joyce</h4>
                 <p>Document Writer</p>
               </div>
               <!-- Back -->
@@ -391,7 +391,7 @@
               <!-- Front -->
               <div class="flip-card-front glass-card">
                 <img src="images/pond/mark.jpg" alt="Mark Soriano" class="team-img">
-                <h4 class="mt-3">Mark Soriano</h4>
+                <h4 class="mt-3">Kimbert Mark</h4>
                 <p>Developer</p>
               </div>
               <!-- Back -->
