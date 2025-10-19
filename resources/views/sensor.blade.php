@@ -261,16 +261,25 @@
 </section>
 
 
-<script src="assets/parallax/jarallax.js"></script>
-<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/dropdown/js/navbar-dropdown.js"></script>
-<script src="assets/scrollgallery/scroll-gallery.js"></script>
-<script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
-<script src="assets/smoothscroll/smooth-scroll.js"></script>
-<script src="assets/ytplayer/index.js"></script>
-<script src="assets/theme/js/script.js"></script>
-<script src="assets/formoid/formoid.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<!-- ✅ Secure Local JS Files (auto HTTPS via Laravel asset helper) -->
+<script src="{{ asset('assets/parallax/jarallax.js') }}"></script>
+<script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/dropdown/js/navbar-dropdown.js') }}"></script>
+<script src="{{ asset('assets/scrollgallery/scroll-gallery.js') }}"></script>
+<script src="{{ asset('assets/mbr-switch-arrow/mbr-switch-arrow.js') }}"></script>
+<script src="{{ asset('assets/smoothscroll/smooth-scroll.js') }}"></script>
+<script src="{{ asset('assets/ytplayer/index.js') }}"></script>
+<script src="{{ asset('assets/theme/js/script.js') }}"></script>
+<script src="{{ asset('assets/formoid/formoid.min.js') }}"></script>
+
+<!-- ✅ Secure CDN Script with integrity + crossorigin -->
+<script 
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+  integrity="sha512-QSkVNOCYLtj2aflK4+YVd3Ap6yNcn+GU+e1LZC7sFvUGJ3eG7Q+9VYjF9Y6w5G8h1sF4WzNq0k1+Mgpjv8HU1w==" 
+  crossorigin="anonymous" 
+  referrerpolicy="no-referrer">
+</script>
+
 
 <script>
 const sensorCharts = {};
