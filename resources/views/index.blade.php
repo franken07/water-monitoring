@@ -2,30 +2,41 @@
 <html>
 <head>
   <!--water quality monitoring-->
+<head>
+  <!-- Water Quality Monitoring -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise AI v0.01, ai.mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="images/pond/icc.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('images/pond/icc.png') }}" type="image/x-icon">
   <meta name="description" content=".">
- 
+
   <title>SWQMS</title>
+
+  <!-- ✅ Local CSS via Laravel asset() (auto https) -->
   <link rel="stylesheet" href="{{ asset('assets/web/assets/mobirise-icons2/mobirise2.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/parallax/jarallax.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-grid.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-reboot.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/dropdown/css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/socicon/css/styles.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/animatecss/animate.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap"></noscript>
-<link rel="preload" as="style" href="{{ asset('assets/mobirise/css/additional.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/mobirise/css/additional.css') }}" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css">
+  <link rel="stylesheet" href="{{ asset('assets/parallax/jarallax.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-grid.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-reboot.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/dropdown/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/socicon/css/styles.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/animatecss/animate.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/mobirise/css/additional.css') }}" type="text/css">
+
+  <!-- ✅ Secure Google Fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap">
+  </noscript>
+
+  <!-- ✅ Secure FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7x8E1bF8l7Q4TITl9z5Z9gAq6xqY+OfB8zIuN/hC9BtTZ5XjU5sBGqW7g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+</head>
+
   
   
 
