@@ -136,10 +136,3 @@ Route::prefix('admin')->group(function () {
 Route::get('/admin/user-logins/fetch', [AdminUserLoginController::class, 'fetchTable'])
     ->name('admin.user_logins.fetch');
 
-Route::get('/assets/{path}', function ($path) {
-    $file = resource_path('assets/' . $path);
-    if (file_exists($file)) {
-        return response()->file($file);
-    }
-    abort(404);
-})->where('path', '.*');
