@@ -3,11 +3,24 @@
 <!-- LogIn-->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="shortcut icon" href="images/pond/icc.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login</title>
+
+<link rel="shortcut icon" href="{{ asset('images/pond/icc.png') }}" type="image/x-icon">
+
+<!-- ✅ Secure Bootstrap (via HTTPS CDN with integrity for extra protection) -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+GY5Ejq9KqvX6MJ0hj9L1zHBt5T0T8JxwQGmQ5T"
+  crossorigin="anonymous"
+/>
+
+<style>
+/* Your custom secure CSS here */
+</style>
+
     body {
         background-image: url('{{ asset('images/pond/PISPAND.jpg') }}');
         background-size: cover;

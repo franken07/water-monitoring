@@ -9,7 +9,8 @@
   <link rel="shortcut icon" href="images/pond/icc.png" type="image/x-icon">
   <meta name="description" content="Explore the latest and greatest PC parts and accessories for your ultimate gaming setup or workstation.">
  
-  <title>water</title>
+<title>Water</title>
+
 <link rel="stylesheet" href="{{ asset('assets/web/assets/mobirise-icons2/mobirise2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/parallax/jarallax.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
@@ -19,12 +20,17 @@
 <link rel="stylesheet" href="{{ asset('assets/socicon/css/styles.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/animatecss/animate.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}">
-<link rel="preload" href="http://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="http://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap"></noscript>
+
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap">
+</noscript>
+
 <link rel="preload" as="style" href="{{ asset('assets/mobirise/css/additional.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/mobirise/css/additional.css') }}" type="text/css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
   
   <style>

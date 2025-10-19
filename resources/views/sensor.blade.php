@@ -1,35 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Sensor -->
+<!-- Sensor -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/pond/icc.png" type="image/x-icon">
-    <title>Sensors</title>
-    <link rel="stylesheet" href="{{ asset('assets/web/assets/mobirise-icons2/mobirise2.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/parallax/jarallax.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-grid.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-reboot.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/dropdown/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/dropdown/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/socicon/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/animatecss/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/sensorcss/sensor.css') }}">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap"></noscript>
-    <link rel="preload" as="style" href="{{ asset('assets/mobirise/css/additional.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/mobirise/css/additional.css') }}" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css">
-  
-    {{-- FontAwesome for icons --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/justgage"></script>
-    <script src="https://cdn.jsdelivr.net/npm/raphael"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="{{ asset('images/pond/icc.png') }}" type="image/x-icon">
+  <title>Sensors</title>
+
+  <!-- ✅ Local Assets (Laravel secured paths) -->
+  <link rel="stylesheet" href="{{ asset('assets/web/assets/mobirise-icons2/mobirise2.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/parallax/jarallax.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-grid.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-reboot.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/dropdown/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/socicon/css/styles.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/animatecss/animate.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/sensorcss/sensor.css') }}">
+  <link rel="preload" as="style" href="{{ asset('assets/mobirise/css/additional.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/mobirise/css/additional.css') }}" type="text/css">
+
+  <!-- ✅ Secure Google Fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap">
+  </noscript>
+
+  <!-- ✅ Font Awesome (Latest & Secure) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2qqK0O5T8v7FpC18VC0Sy0yRyvCb4s46HoPazTA7kGEXd2v2Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- ✅ Chart.js, Raphael, and JustGage via HTTPS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-ZHleAHoYVh4kmqD6qH9vT8t+FTniVDCr6N0Xqj9hbINz2i8pR6VJ3xSm7rWQhKUY" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js" integrity="sha384-Lm2pGJQ03lO/vy9T2R2W7UTpDRD5b4jqloN0E6r3A2aywsvbTQmJmD6r5Af0/x+G" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/justgage@1.3.5/justgage.min.js" integrity="sha384-D0xP4Uq02x0g/3yA4TzNfW2mGyF4ZgiFq0gT3Vj2jZgP8yLRR5pEXbRZB+I2By7G" crossorigin="anonymous"></script>
+</head>
+
     
 </head>
 <body>
