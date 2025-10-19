@@ -284,35 +284,35 @@ function saveHistoryToLocalStorage() {
 // ✅ Per-Sensor Interpretation Logic
 function getSingleInterpretation(type, value) {
     if (value === null || value === undefined || value === 'N/A' || value === '') {
-        return "No data available.";
+        return { text: "No data available.", severity: "neutral" };
     }
 
     value = parseFloat(value);
 
     switch (type) {
         case "phLevel":
-            if (value < 6.5) return "⚠️ Water is acidic (low pH).";
-            if (value > 8.5) return "⚠️ Water is alkaline (high pH).";
-            return "✅ pH is within safe range.";
+            if (value < 6.5) return { text: "⚠️ Water is acidic (low pH).", severity: "danger" };
+            if (value > 8.5) return { text: "⚠️ Water is alkaline (high pH).", severity: "danger" };
+            return { text: "✅ pH is within safe range.", severity: "good" };
         
         case "temperature":
-            if (value < 20) return "⚠️ Too cold — may stress fish.";
-            if (value > 30) return "⚠️ Too hot — risk of low oxygen.";
-            return "✅ Temperature is suitable.";
+            if (value < 20) return { text: "⚠️ Too cold — may stress fish.", severity: "warning" };
+            if (value > 30) return { text: "⚠️ Too hot — risk of low oxygen.", severity: "danger" };
+            return { text: "✅ Temperature is suitable.", severity: "good" };
         
         case "turbidity":
-            if (value > 80) return "❌ Extremely turbid — very poor conditions.";
-            if (value > 50) return "⚠️ High turbidity — blocks sunlight.";
-            if (value > 20) return "ℹ️ Slightly cloudy but tolerable.";
-            return "✅ Water is clear.";
+            if (value > 80) return { text: "❌ Extremely turbid — very poor conditions.", severity: "critical" };
+            if (value > 50) return { text: "⚠️ High turbidity — blocks sunlight.", severity: "danger" };
+            if (value > 20) return { text: "ℹ️ Slightly cloudy but tolerable.", severity: "warning" };
+            return { text: "✅ Water is clear.", severity: "good" };
         
         case "salinity":
-            if (value < 5) return "⚠️ Low salinity — may stress species.";
-            if (value > 35) return "⚠️ High salinity — harmful for freshwater fish.";
-            return "✅ Salinity is within safe range.";
+            if (value < 5) return { text: "⚠️ Low salinity — may stress species.", severity: "danger" };
+            if (value > 35) return { text: "⚠️ High salinity — harmful for freshwater fish.", severity: "danger" };
+            return { text: "✅ Salinity is within safe range.", severity: "good" };
         
         default:
-            return "ℹ️ No interpretation available.";
+            return { text: "ℹ️ No interpretation available.", severity: "neutral" };
     }
 }
 
@@ -327,12 +327,10 @@ function getCrossInterpretation(ph, temp, turb, sal) {
     turb = parseFloat(turb);
     sal = parseFloat(sal);
 
-    // ✅ Ideal condition
     if (ph >= 6.5 && ph <= 8.5 && temp >= 20 && temp <= 30 && turb <= 20 && sal >= 5 && sal <= 35) {
         return { text: "Water quality is good — suitable for aquatic life.", severity: "good" };
     }
 
-    // 🚨 Complex cross-conditions
     if (temp > 30 && sal > 35 && turb > 50) {
         return { text: "High temp + salinity + turbidity — prone to algae bloom, oxygen depletion likely.", severity: "critical" };
     }
@@ -355,7 +353,6 @@ function getCrossInterpretation(ph, temp, turb, sal) {
         return { text: "Salty + turbid water — harsh for aquatic life.", severity: "danger" };
     }
 
-    // 🟡 Single-parameter warnings
     if (turb > 80) {
         return { text: "Extremely turbid — very poor for aquatic life.", severity: "critical" };
     }
@@ -375,26 +372,28 @@ function getCrossInterpretation(ph, temp, turb, sal) {
     return { text: "Some parameters outside optimal range — monitor closely.", severity: "warning" };
 }
 
-// ✅ Style interpretation box with severity
+// ✅ Unified colors: green = good, orange = warning, red = danger/critical
 function styleInterpretation(element, result) {
-    let colors = {
-        good:   { color: "#2e7d32", bg: "#c8e6c9", icon: "✔️" },
-        warning:{ color: "#01579b", bg: "#bbdefb", icon: "ℹ️" },
-        danger: { color: "#e65100", bg: "#ffe0b2", icon: "⚠️" },
-        critical:{ color: "#b71c1c", bg: "#ffcdd2", icon: "❌" },
-        neutral:{ color: "#607d8b", bg: "#eceff1", icon: "…" }
+    const colors = {
+        good:    { color: "#2e7d32", border: "#2e7d32", icon: "✔️" },  // green
+        warning: { color: "#ff9800", border: "#ff9800", icon: "⚠️" },  // orange
+        danger:  { color: "#f44336", border: "#f44336", icon: "⚠️" },  // red
+        critical:{ color: "#f44336", border: "#f44336", icon: "❌" },  // red
+        neutral: { color: "#607d8b", border: "#607d8b", icon: "…" }    // gray
     };
 
-    let scheme = colors[result.severity] || colors.neutral;
+    const scheme = colors[result.severity] || colors.neutral;
     element.innerText = `${scheme.icon} ${result.text}`;
     element.style.color = scheme.color;
-    element.style.backgroundColor = scheme.bg;
+
+    const card = element.closest('.sensor-card');
+    if (card) card.style.border = `2px solid ${scheme.border}`;
 }
 
-// ✅ Update ONLY Live Data (cards & gauges)
+// ✅ Update Live Data
 function updateLiveData() {
     fetch('/sensor/live')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             let ph = null, temp = null, turb = null, sal = null;
 
@@ -411,41 +410,39 @@ function updateLiveData() {
                     if (valueElem) valueElem.innerText = value;
                     if (timeElem) timeElem.innerHTML = `<i class="far fa-clock"></i> ${timestamp}`;
 
-                    // ✅ Per-sensor live interpretation
-                    if (interpElem) interpElem.innerText = getSingleInterpretation(key, value);
+                    const interpResult = getSingleInterpretation(key, value);
+                    if (interpElem) styleInterpretation(interpElem, interpResult);
 
+                    // Arrows
                     if (iconElem) {
-                        if (value > 80) {
-                            iconElem.className = "fas fa-arrow-up";
-                            iconElem.style.color = "var(--danger-color)";
-                        } else if (value > 50) {
+                        if (value > 50) {
                             iconElem.className = "fas fa-arrow-right";
-                            iconElem.style.color = "var(--warning-color)";
+                            iconElem.style.color = "#f44336"; // red
+                        } else if (value > 20) {
+                            iconElem.className = "fas fa-arrow-right";
+                            iconElem.style.color = "#ff9800"; // orange
                         } else {
                             iconElem.className = "fas fa-arrow-down";
-                            iconElem.style.color = "var(--success-color)";
+                            iconElem.style.color = "#2e7d32"; // green
                         }
                     }
 
-                    // Save values for interpretation
                     if (key === "phLevel") ph = value;
                     if (key === "temperature") temp = value;
                     if (key === "turbidity") turb = value;
                     if (key === "salinity") sal = value;
 
-                    // Update individual gauge charts (not history)
                     if (sensorCharts[key]) {
                         const chart = sensorCharts[key];
-                        chart.data.datasets[0].data[0] = value;
+                        chart.data.datasets[0].data[0] =
+                            value === 'N/A' ? 0 : value;
                         chart.data.datasets[0].backgroundColor[0] =
-                            value > 80 ? '#f44336' :
-                            value > 50 ? '#ff9800' : '#4caf50';
+                            value > 50 ? '#f44336' : value > 20 ? '#ff9800' : '#2e7d32';
                         chart.update();
                     }
                 }
             }
 
-            // ✅ Update summary chart
             if (summaryChart) {
                 @foreach($staticSensorNames as $sensorKey => $sensorName)
                 if (data['{{ $sensorKey }}']) {
@@ -455,19 +452,18 @@ function updateLiveData() {
                 summaryChart.update();
             }
 
-            // ✅ Update Cross Interpretation
-            let interpElem = document.getElementById("cross-interpretation");
+            const interpElem = document.getElementById("cross-interpretation");
             if (interpElem) {
-                let result = getCrossInterpretation(ph, temp, turb, sal);
+                const result = getCrossInterpretation(ph, temp, turb, sal);
                 styleInterpretation(interpElem, result);
             }
         });
 }
 
-// ✅ Update ONLY History Data
+// ✅ Update History Data
 function updateHistoryData() {
     fetch('/sensor/live')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             for (const key in data) {
                 if (data[key]) {
@@ -497,7 +493,7 @@ function updateHistoryData() {
         });
 }
 
-// ✅ Chart creation (show last 10)
+// ✅ Chart Creation
 function createLineChart(ctx, label, color, unit, historyArray, chartRef) {
     const last10 = historyArray.slice(-10);
     const labels = last10.map(e => e.timestamp);
@@ -534,34 +530,36 @@ function createLineChart(ctx, label, color, unit, historyArray, chartRef) {
     }
 }
 
-// ✅ Chart updaters
+// ✅ Chart Updaters
 function updatePhChart() {
     const ctx = document.getElementById('chart-history-ph')?.getContext('2d');
     if (!ctx) return;
-    createLineChart(ctx, 'pH Level (Live)', 'rgb(100,181,246)', 'pH', phHistory, { get chart() { return phLineChart; }, set chart(v) { phLineChart = v; } });
+    createLineChart(ctx, 'pH Level (Live)', 'rgb(46,125,50)', 'pH', phHistory, { get chart() { return phLineChart; }, set chart(v) { phLineChart = v; } });
 }
 function updateTemperatureChart() {
     const ctx = document.getElementById('chart-history-temp')?.getContext('2d');
     if (!ctx) return;
-    createLineChart(ctx, 'Temperature (°C)', 'rgb(239,83,80)', '°C', temperatureHistory, { get chart() { return temperatureLineChart; }, set chart(v) { temperatureLineChart = v; } });
+    createLineChart(ctx, 'Temperature (°C)', 'rgb(46,125,50)', '°C', temperatureHistory, { get chart() { return temperatureLineChart; }, set chart(v) { temperatureLineChart = v; } });
 }
 function updateTurbidityChart() {
     const ctx = document.getElementById('chart-history-turb')?.getContext('2d');
     if (!ctx) return;
-    createLineChart(ctx, 'Turbidity (NTU)', 'rgb(33,150,243)', 'NTU', turbidityHistory, { get chart() { return turbidityLineChart; }, set chart(v) { turbidityLineChart = v; } });
+    createLineChart(ctx, 'Turbidity (NTU)', 'rgb(46,125,50)', 'NTU', turbidityHistory, { get chart() { return turbidityLineChart; }, set chart(v) { turbidityLineChart = v; } });
 }
 function updateSalinityChart() {
     const ctx = document.getElementById('chart-history-sal')?.getContext('2d');
     if (!ctx) return;
-    createLineChart(ctx, 'Salinity (ppt)', 'rgb(0,172,193)', 'ppt', salinityHistory, { get chart() { return salinityLineChart; }, set chart(v) { salinityLineChart = v; } });
+    createLineChart(ctx, 'Salinity (ppt)', 'rgb(46,125,50)', 'ppt', salinityHistory, { get chart() { return salinityLineChart; }, set chart(v) { salinityLineChart = v; } });
 }
 
-// ✅ Start intervals
+// ✅ Start Intervals
 updateLiveData();
 updateHistoryData();
 setInterval(updateLiveData, 1000);
 setInterval(updateHistoryData, 10000);
 </script>
+
+
 
 
 
@@ -859,33 +857,20 @@ async function exportHistoryToExcel() {
         let startCol = 1;
         const spacingBetweenCols = 2;
 
-        // --- Legend row ---
-        ws.getRow(1).height = 25;
-        let legendCol = 1;
-        sensors.forEach(sensor => {
-            ws.mergeCells(1, legendCol, 1, legendCol + 1);
-            const legendCell = ws.getCell(1, legendCol);
-            legendCell.value = ` ${sensor.name} `;
-            legendCell.font = { bold: true, color: { argb: 'FF000000' } };
-            legendCell.alignment = { horizontal: 'center', vertical: 'middle' };
-            legendCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sensor.color } };
-            legendCol += 2 + spacingBetweenCols;
-        });
-
         // --- Sensor Tables ---
         sensors.forEach(sensor => {
             // Title row
-            ws.mergeCells(2, startCol, 2, startCol + 1);
-            const titleCell = ws.getCell(2, startCol);
+            ws.mergeCells(1, startCol, 1, startCol + 1);
+            const titleCell = ws.getCell(1, startCol);
             titleCell.value = sensor.name;
-            titleCell.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+            titleCell.font = { bold: true, color: { argb: '#000000' } };
             titleCell.alignment = { horizontal: 'center' };
             titleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sensor.color } };
 
             // Header row
-            ws.getCell(3, startCol).value = 'Timestamp';
-            ws.getCell(3, startCol + 1).value = 'Value';
-            [ws.getCell(3, startCol), ws.getCell(3, startCol + 1)].forEach(cell => {
+            ws.getCell(2, startCol).value = 'Timestamp';
+            ws.getCell(2, startCol + 1).value = 'Value';
+            [ws.getCell(2, startCol), ws.getCell(2, startCol + 1)].forEach(cell => {
                 cell.font = { bold: true };
                 cell.alignment = { horizontal: 'center' };
                 cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sensor.color } };
@@ -894,7 +879,7 @@ async function exportHistoryToExcel() {
 
             // Data rows with alternating shading
             sensor.rows.forEach((row, idx) => {
-                const r = 4 + idx;
+                const r = 3 + idx;
                 ws.getCell(r, startCol).value = row[0];
                 ws.getCell(r, startCol + 1).value = row[1];
                 const fillColor = idx % 2 === 0 ? 'FFFFFFFF' : 'FFF0F0F0';
@@ -905,7 +890,7 @@ async function exportHistoryToExcel() {
             });
 
             // Location rows
-            const locationRow = 4 + maxRows;
+            const locationRow = 3 + maxRows;
             ws.getCell(locationRow, startCol).value = 'Location';
             ws.getCell(locationRow, startCol + 1).value = readableAddress;
             ws.getCell(locationRow + 1, startCol).value = 'Latitude';
@@ -954,7 +939,6 @@ async function exportHistoryToExcel() {
 
 document.getElementById("exportHistoryBtn").addEventListener("click", exportHistoryToExcel);
 </script>
-
 
 
 </body>
