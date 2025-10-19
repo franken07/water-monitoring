@@ -72,7 +72,7 @@
 							<div id="collapse1_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
 								<div class="panel-body">
 									<p class="mbr-fonts-style panel-text display-7">
-										The system uses sensors to measure water parameters like pH, temperature, dissolved oxygen, and turbidity. These readings are transmitted via Wi-Fi to our web platform for real-time monitoring and analysis.
+										The system uses sensors to measure water parameters like pH, temperature, salinity, and turbidity. These readings are transmitted via Wi-Fi to our web platform for real-time monitoring and analysis.
 									</p>
 								</div>
 							</div>
@@ -89,7 +89,7 @@
 							<div id="collapse2_0" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion" data-bs-parent="#bootstrap-accordion_0">
 								<div class="panel-body">
 									<p class="mbr-fonts-style panel-text display-7">
-										Our system monitors pH levels, temperature, dissolved oxygen, and turbidity. These are key indicators for water quality and help maintain optimal conditions for aquatic life.
+										Our system monitors pH levels, temperature, salinity, and turbidity. These are key indicators for water quality and help maintain optimal conditions for aquatic life.
 									</p>
 								</div>
 							</div>
