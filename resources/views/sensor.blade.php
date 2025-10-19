@@ -29,13 +29,11 @@
   </noscript>
 
   <!-- ✅ Font Awesome (Latest & Secure) -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2qqK0O5T8v7FpC18VC0Sy0yRyvCb4s46HoPazTA7kGEXd2v2Q=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/justgage@1.3.5/justgage.min.js"></script>
+
 
   <!-- ✅ Chart.js, Raphael, and JustGage via HTTPS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-ZHleAHoYVh4kmqD6qH9vT8t+FTniVDCr6N0Xqj9hbINz2i8pR6VJ3xSm7rWQhKUY" crossorigin="anonymous"></script>
@@ -272,8 +270,7 @@
 <script src="/assets/theme/js/script.js"></script>
 <script src="/assets/formoid/formoid.min.js"></script>
 
-<!-- External libraries (HTTPS!) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 <script>
 const sensorCharts = {};

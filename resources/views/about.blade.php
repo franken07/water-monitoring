@@ -29,7 +29,10 @@
 <link rel="preload" as="style" href="{{ asset('assets/mobirise/css/additional.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/mobirise/css/additional.css') }}" type="text/css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/justgage@1.3.5/justgage.min.js"></script>
 
   
   
