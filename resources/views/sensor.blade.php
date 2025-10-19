@@ -294,7 +294,7 @@ function saveHistoryToLocalStorage() {
     localStorage.setItem("salinityHistory", JSON.stringify(salinityHistory));
 }
 
-// ✅ Per-Sensor Interpretation Logic
+// ✅ Per-Sensor Interpretation Logic (Aligned with Cross-Interpretation Parameters)
 function getSingleInterpretation(type, value) {
     if (value === null || value === undefined || value === 'N/A' || value === '') {
         return { text: "No data available.", severity: "neutral" };
@@ -304,32 +304,38 @@ function getSingleInterpretation(type, value) {
 
     switch (type) {
         case "phLevel":
-            if (value < 6.5) return { text: "⚠️ Water is acidic (low pH).", severity: "danger" };
-            if (value > 8.5) return { text: "⚠️ Water is alkaline (high pH).", severity: "danger" };
+            if (value < 6.0) return { text: "❌ Highly acidic — harmful to fish!", severity: "critical" };
+            if (value < 6.5) return { text: "⚠️ Acidic — monitor pH closely.", severity: "warning" };
+            if (value > 9.0) return { text: "❌ Highly alkaline — dangerous for fish!", severity: "critical" };
+            if (value > 8.5) return { text: "⚠️ Alkaline — monitor pH closely.", severity: "warning" };
             return { text: "✅ pH is within safe range.", severity: "good" };
-        
+
         case "temperature":
-            if (value < 20) return { text: "⚠️ Too cold — may stress fish.", severity: "warning" };
-            if (value > 30) return { text: "⚠️ Too hot — risk of low oxygen.", severity: "danger" };
-            return { text: "✅ Temperature is suitable.", severity: "good" };
-        
+            if (value < 16) return { text: "❌ Water too cold — fish may be in danger!", severity: "critical" };
+            if (value < 20) return { text: "⚠️ Slightly cold — fish may be stressed.", severity: "warning" };
+            if (value > 35) return { text: "❌ Excessive heat — oxygen depletion likely!", severity: "critical" };
+            if (value > 30) return { text: "⚠️ Warm water — monitor fish and oxygen levels.", severity: "warning" };
+            return { text: "✅ Temperature is suitable for fish.", severity: "good" };
+
         case "turbidity":
-            if (value > 80) return { text: "❌ Extremely turbid — very poor conditions.", severity: "critical" };
-            if (value > 50) return { text: "⚠️ High turbidity — blocks sunlight.", severity: "danger" };
-            if (value > 20) return { text: "ℹ️ Slightly cloudy but tolerable.", severity: "warning" };
+            if (value > 80) return { text: "❌ Extremely turbid — very poor for fish!", severity: "critical" };
+            if (value > 50) return { text: "⚠️ High turbidity — may stress fish and block sunlight.", severity: "warning" };
+            if (value > 20) return { text: "ℹ️ Slightly cloudy but tolerable.", severity: "neutral" };
             return { text: "✅ Water is clear.", severity: "good" };
-        
+
         case "salinity":
-            if (value < 5) return { text: "⚠️ Low salinity — may stress species.", severity: "danger" };
-            if (value > 35) return { text: "⚠️ High salinity — harmful for freshwater fish.", severity: "danger" };
+            if (value > 40) return { text: "❌ Very high salinity — freshwater fish cannot survive!", severity: "critical" };
+            if (value > 35) return { text: "⚠️ High salinity — stressful for freshwater fish.", severity: "warning" };
+            if (value === 0) return { text: "ℹ️ No salt detected — fish are fine, adding a small amount may improve health.", severity: "neutral" };
             return { text: "✅ Salinity is within safe range.", severity: "good" };
-        
+
         default:
             return { text: "ℹ️ No interpretation available.", severity: "neutral" };
     }
 }
 
-// ✅ Cross Interpretation Logic
+
+// ✅ Cross Interpretation Logic (Aligned Thresholds & Friendly Wording)
 function getCrossInterpretation(ph, temp, turb, sal) {
     if ([ph, temp, turb, sal].some(v => v === null || v === undefined || v === 'N/A' || v === '')) {
         return { text: "Not enough data to generate interpretation", severity: "neutral" };
@@ -340,38 +346,37 @@ function getCrossInterpretation(ph, temp, turb, sal) {
     turb = parseFloat(turb);
     sal = parseFloat(sal);
 
-    if (ph >= 6.5 && ph <= 8.5 && temp >= 20 && temp <= 30 && turb <= 20 && sal >= 5 && sal <= 35) {
-        return { text: "Water quality is good — suitable for aquatic life.", severity: "good" };
+    // ✅ All good
+    if (ph >= 6.5 && ph <= 8.5 && temp >= 20 && temp <= 30 && turb <= 20 && sal <= 35) {
+        return { text: "✅ Water quality is good — suitable for freshwater fish.", severity: "good" };
     }
 
-    if (temp > 30 && sal > 35 && turb > 50) {
-        return { text: "High temp + salinity + turbidity — prone to algae bloom, oxygen depletion likely.", severity: "critical" };
-    }
-    if (temp > 30 && turb > 50) {
-        return { text: "High temp + turbidity — low oxygen levels, fish stress likely.", severity: "danger" };
-    }
-    if (ph < 6.5 && sal > 35) {
-        return { text: "Acidic + high salinity — harmful for freshwater species, risk of fish kills.", severity: "danger" };
-    }
-    if (ph > 8.5 && turb > 50) {
-        return { text: "Alkaline + cloudy water — reduced light penetration, poor plant growth.", severity: "danger" };
-    }
-    if (temp > 30 && sal > 35) {
-        return { text: "Hot + saline water — stressful for fish, risk of gill damage.", severity: "danger" };
-    }
-    if (temp > 30 && ph > 8.5) {
-        return { text: "Warm + alkaline water — may accelerate ammonia toxicity.", severity: "danger" };
-    }
-    if (sal > 40 && turb > 50) {
-        return { text: "Salty + turbid water — harsh for aquatic life.", severity: "danger" };
+    // ❌ Critical conditions
+    if (ph < 6.0 || ph > 9.0 || temp < 16 || temp > 35 || turb > 80 || sal > 40) {
+        return { text: "❌ Critical water conditions — fish may be in danger! Take immediate action.", severity: "critical" };
     }
 
-    if (turb > 80) return { text: "Extremely turbid — very poor for aquatic life.", severity: "critical" };
-    if (sal > 40) return { text: "Very high salinity — freshwater species cannot survive.", severity: "danger" };
-    if (temp > 35) return { text: "Excessive heat — oxygen depletion likely.", severity: "danger" };
-    if (ph < 6.0) return { text: "Highly acidic — corrosive and harmful for organisms.", severity: "danger" };
-    if (ph > 9.0) return { text: "Highly alkaline — may cause ammonia toxicity.", severity: "danger" };
+    // ⚠️ Combined warnings
+    if ((temp > 30 && sal > 35 && turb > 50)) {
+        return { text: "⚠️ High temp + salinity + turbidity — prone to algae bloom, low oxygen likely.", severity: "warning" };
+    }
+    if ((temp > 30 && turb > 50)) {
+        return { text: "⚠️ High temperature and turbidity — fish may be stressed.", severity: "warning" };
+    }
+    if ((ph < 6.5 && sal > 35)) {
+        return { text: "⚠️ Acidic and high salinity — harmful for freshwater fish.", severity: "warning" };
+    }
+    if ((ph > 8.5 && turb > 50)) {
+        return { text: "⚠️ Alkaline and cloudy water — poor light for plants, fish may be stressed.", severity: "warning" };
+    }
+    if ((temp > 30 && ph > 8.5)) {
+        return { text: "⚠️ Warm and alkaline water — may increase ammonia toxicity.", severity: "warning" };
+    }
+    if ((sal > 35 && turb > 50)) {
+        return { text: "⚠️ Salty and turbid water — stressful for fish.", severity: "warning" };
+    }
 
+    // Default fallback
     return { text: "Some parameters outside optimal range — monitor closely.", severity: "warning" };
 }
 
