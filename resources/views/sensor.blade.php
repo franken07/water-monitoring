@@ -53,6 +53,8 @@
     </div>
 
     <div class="dashboard-grid">
+
+    
 <!-- Location Map -->
 <div class="sensor-card" style="grid-column: span 2; display: flex; flex-direction: column; gap: 10px;">
     <div class="sensor-name" style="display: flex; align-items: center; justify-content: space-between;">
@@ -75,7 +77,7 @@
         <i class="fas fa-chart-pie" style="margin-right: 8px; color: var(--primary-color);"></i>
         Sensor Summary Overview
     </div>
-
+    
     <!-- Chart -->
     <div class="chart-container"
          style="height: 300px; position: relative; margin-bottom: 60px;">
@@ -90,6 +92,14 @@
                 max-width: 95%; margin: 0 auto;">
         Analyzing combined sensor data...
     </div>
+    <!-- Legend for colors -->
+<div class="color-legend" 
+     style="display: flex; justify-content: center; gap: 20px; margin-top: 10px; font-weight: 600;">
+    <div><span style="display:inline-block; width:15px; height:15px; background-color:#2e7d32; border-radius:3px; margin-right:5px;"></span> Good</div>
+    <div><span style="display:inline-block; width:15px; height:15px; background-color:#ff9800; border-radius:3px; margin-right:5px;"></span> Warning</div>
+    <div><span style="display:inline-block; width:15px; height:15px; background-color:#f44336; border-radius:3px; margin-right:5px;"></span> Critical</div>
+</div>
+
 </div>
 
 
@@ -838,7 +848,6 @@ async function exportHistoryToExcel() {
             ].filter(Boolean);
             readableAddress = parts.join(', ');
         }
-        if (readableAddress.length > 30) readableAddress = readableAddress.substring(0, 27) + '...';
 
         // --- Sensors ---
         const sensors = [
@@ -895,8 +904,12 @@ async function exportHistoryToExcel() {
             ws.getCell(locationRow + 1, startCol + 1).value = lat;
             ws.getCell(locationRow + 2, startCol).value = 'Longitude';
             ws.getCell(locationRow + 2, startCol + 1).value = lng;
+
+            // Styling + Wrapping for location cells
             for (let r = locationRow; r <= locationRow + 2; r++) {
+                ws.getRow(r).height = 25;
                 [ws.getCell(r, startCol), ws.getCell(r, startCol + 1)].forEach(cell => {
+                    cell.alignment = { wrapText: true, vertical: 'middle' };
                     cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
                     cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEFEFEF' } };
                     cell.font = { bold: true };
@@ -916,9 +929,10 @@ async function exportHistoryToExcel() {
                 cell.alignment = { horizontal: 'center' };
             });
 
-            // Auto-width
-            ws.getColumn(startCol).width = Math.max(15, sensor.rows.reduce((max, r) => Math.max(max, r[0]?.length || 0), 0) + 2, readableAddress.length + 2);
-            ws.getColumn(startCol + 1).width = Math.max(10, sensor.rows.reduce((max, r) => Math.max(max, r[1]?.toString().length || 0), 0) + 2);
+            // --- Auto-width (with readable address consideration) ---
+            const addressWidth = Math.min(Math.max(readableAddress.length / 1.5, 25), 50);
+            ws.getColumn(startCol).width = Math.max(15, sensor.rows.reduce((max, r) => Math.max(max, r[0]?.length || 0), 0) + 2);
+            ws.getColumn(startCol + 1).width = addressWidth;
 
             startCol += 2 + spacingBetweenCols;
         });
