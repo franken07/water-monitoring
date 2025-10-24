@@ -165,7 +165,13 @@
      style="margin-top: 6px; font-style: italic; color: var(--text-secondary);">
     Interpreting data...
 </div>
-
+    <!-- Legend for colors -->
+<div class="color-legend" 
+     style="display: flex; justify-content: center; gap: 20px; margin-top: 10px; font-weight: 600;">
+    <div><span style="display:inline-block; width:15px; height:15px; background-color:#2e7d32; border-radius:3px; margin-right:5px;"></span> Good</div>
+    <div><span style="display:inline-block; width:15px; height:15px; background-color:#ff9800; border-radius:3px; margin-right:5px;"></span> Warning</div>
+    <div><span style="display:inline-block; width:15px; height:15px; background-color:#f44336; border-radius:3px; margin-right:5px;"></span> Critical</div>
+</div>
     </div>
 @endforeach
 
